@@ -11,10 +11,10 @@ class Settings(BaseSettings):
     GROQ_MODEL: str = "llama-3.3-70b-versatile"
 
     MOCK_MODE: bool = True
-    FRONTEND_URL: str = "http://localhost:5173"
+    FRONTEND_URL: str = "https://travel-content-automation-agent-fsv9.onrender.com"
 
     APP_ENV: str = "local"
-    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,https://travel-content-automation-agent.onrender.com"
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,https://travel-content-automation-agent-fsv9.onrender.com"
 
     class Config:
         env_file = ".env"
