@@ -13,10 +13,18 @@ app = FastAPI(title="Travel Content Automation Agent")
 
 origins = [x.strip() for x in settings.CORS_ORIGINS.split(",")]
 
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -57,3 +65,11 @@ def startup():
 @app.get("/")
 def root():
     return {"message": "Travel Content Automation Agent API is running"}
+
+
+
+@app.get("/debug/cors")
+def debug_cors():
+    return {
+        "cors_origins": [x.strip() for x in settings.CORS_ORIGINS.split(",")]
+    }
