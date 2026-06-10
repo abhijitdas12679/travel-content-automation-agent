@@ -22,9 +22,11 @@ origins = [x.strip() for x in settings.CORS_ORIGINS.split(",")]
 #     allow_headers=["*"],
 # )
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origin_regex=".*",
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,8 +71,8 @@ def root():
 
 
 
-@app.get("/debug/cors")
-def debug_cors():
+@app.get("/debug")
+def debug():
     return {
-        "cors_origins": [x.strip() for x in settings.CORS_ORIGINS.split(",")]
+        "cors_origins": settings.CORS_ORIGINS
     }
