@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = "mysql+pymysql://root:root123@localhost:3306/travel_content_db"
+    DATABASE_URL: str = "postgresql+psycopg2://postgres:root123@localhost:5432/travel_agent"
 
     JWT_SECRET_KEY: str = "change-this-secret"
     JWT_ALGORITHM: str = "HS256"
@@ -14,7 +14,8 @@ class Settings(BaseSettings):
     FRONTEND_URL: str = "https://travel-content-automation-agent-fsv9.onrender.com"
 
     APP_ENV: str = "local"
-    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,https://travel-content-automation-agent-fsv9.onrender.com"
+    # CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,https://travel-content-automation-agent-fsv9.onrender.com"
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,https://travel-content-automation-agent-fsv9.onrender.com,https://travel-content-automation-agent-1.onrender.com"
 
     class Config:
         env_file = ".env"
