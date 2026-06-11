@@ -314,7 +314,7 @@ export default function ContentReview() {
 
       await load();
 
-      alert("Selected blog accepted and posted successfully.");
+      alert("Selected blog approved and posted successfully.");
     } catch (error) {
       alert("Accept/post failed.");
     } finally {

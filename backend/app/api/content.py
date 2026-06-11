@@ -10,7 +10,9 @@ router = APIRouter(prefix="/content", tags=["Content"])
 
 @router.get("/")
 def list_content(status: str | None = None, db: Session = Depends(get_db)):
-    query = db.query(GeneratedContent).order_by(GeneratedContent.created_at.desc())
+    query = db.query(GeneratedContent).order_by(
+        GeneratedContent.created_at.desc()
+    )
 
     if status:
         query = query.filter(GeneratedContent.status == status)
@@ -68,16 +70,17 @@ def accept_content(content_id: int, db: Session = Depends(get_db)):
     )
 
     if not content:
-        raise HTTPException(status_code=404, detail="Pending content not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Pending content not found"
+        )
 
     try:
-        content.status = "accepted"
-
         db.add(
             ApprovalLog(
                 entity_type="content",
                 entity_id=content.id,
-                action="accepted",
+                action="approved",
                 user_id=None,
             )
         )
@@ -86,25 +89,37 @@ def accept_content(content_id: int, db: Session = Depends(get_db)):
 
         auto_post_content(db, content.id)
 
-        content = db.query(GeneratedContent).filter(GeneratedContent.id == content_id).first()
+        content = (
+            db.query(GeneratedContent)
+            .filter(GeneratedContent.id == content_id)
+            .first()
+        )
+
         content.status = "posted"
         db.commit()
 
         return {
             "success": True,
-            "message": "Blog accepted, posted, and published on public site",
+            "message": "Blog posted and published on public site",
         }
 
     except Exception as e:
         db.rollback()
 
-        content = db.query(GeneratedContent).filter(GeneratedContent.id == content_id).first()
+        content = (
+            db.query(GeneratedContent)
+            .filter(GeneratedContent.id == content_id)
+            .first()
+        )
 
         if content:
             content.status = "failed"
             db.commit()
 
-        raise HTTPException(status_code=500, detail=f"Posting failed: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Posting failed: {str(e)}"
+        )
 
 
 @router.post("/{content_id}/reject")
@@ -119,7 +134,10 @@ def reject_content(content_id: int, db: Session = Depends(get_db)):
     )
 
     if not content:
-        raise HTTPException(status_code=404, detail="Pending content not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Pending content not found"
+        )
 
     content.status = "rejected"
 

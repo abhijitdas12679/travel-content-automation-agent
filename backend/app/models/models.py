@@ -56,7 +56,7 @@ class GeneratedContent(Base, TimestampMixin):
     image_prompt = Column(Text)
     cta = Column(String(255))
     status = Column(
-        Enum("pending", "accepted", "rejected", "posted", "failed", name="content_status"),
+        Enum("pending", "rejected", "posted", "failed", name="content_status"),
         default="pending"
     )
     feed = relationship("RSSFeed")

@@ -11,7 +11,6 @@ def summary(db: Session = Depends(get_db), user=Depends(require_admin)):
     return {
         "total_rss_articles": db.query(RSSFeed).count(),
         "pending_review": db.query(GeneratedContent).filter(GeneratedContent.status == "pending").count(),
-        "accepted": db.query(GeneratedContent).filter(GeneratedContent.status == "accepted").count(),
         "rejected": db.query(GeneratedContent).filter(GeneratedContent.status == "rejected").count(),
         "posted": db.query(GeneratedContent).filter(GeneratedContent.status == "posted").count(),
         "social_posts": db.query(SocialPost).count(),
