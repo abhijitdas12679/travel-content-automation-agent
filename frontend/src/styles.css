@@ -250,7 +250,7 @@ textarea {
 }
 
 .adm-brand-name {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 0.02em;
@@ -289,7 +289,7 @@ textarea {
   align-items: center;
   gap: 10px;
   padding: 9px 20px;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.6);
   border-left: 2px solid transparent;
@@ -387,11 +387,11 @@ main {
 .adm-topbar-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .adm-public-link {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
   display: flex;
@@ -405,7 +405,7 @@ main {
 }
 
 .adm-welcome {
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -416,7 +416,7 @@ main {
   background: rgba(255, 255, 255, 0.15);
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -639,7 +639,7 @@ main {
 .page-head {
   background: linear-gradient(135deg, var(--teal), var(--orange));
   color: #ffffff;
-  border-radius: 24px;
+  border-radius: 0px;
   padding: 30px;
   margin-bottom: 24px;
   display: flex;
@@ -668,11 +668,14 @@ main {
 .empty-state {
   text-align: center;
   padding: 50px;
+  margin-left: 20px;
 }
 
 .review-list {
   display: grid;
   gap: 28px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .blog-review-card {
