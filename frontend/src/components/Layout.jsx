@@ -6,6 +6,12 @@ export default function Layout() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to sign out?"
+    );
+
+    if (!confirmed) return;
+
     logout();
     navigate("/login", { replace: true });
   };
